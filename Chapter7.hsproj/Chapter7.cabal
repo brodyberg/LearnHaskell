@@ -12,4 +12,5 @@ Executable Chapter7
   build-depends:
       base -any
   other-modules:
+      Exercises
       Arith2
