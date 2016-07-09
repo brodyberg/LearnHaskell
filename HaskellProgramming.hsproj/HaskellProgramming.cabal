@@ -1,0 +1,23 @@
+name: HaskellProgramming
+version: 1.0
+cabal-version: 1.11
+build-type: Simple
+license: AllRightsReserved
+stability: experimental
+x-ghc-framework-version: 7.10.3-5.9-2
+x-last-ide-version: HfM1.2.1
+Executable HaskellProgramming
+  main-is: Chapter3.hs
+  buildable: True
+  build-depends:
+      base -any
+  other-modules:
+      Chapter06
+      Chapter07
+      Chapter09
+      Chapter10.NewModule
+      Chapter05.TypeInference1
+      Chapter05.EqExercises
+      Chapter2
+      Chapter08
+      Chapter11
