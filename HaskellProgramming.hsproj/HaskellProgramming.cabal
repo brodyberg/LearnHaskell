@@ -12,18 +12,13 @@ Executable HaskellProgramming
   build-depends:
       base -any
   other-modules:
+      Chapter08.FFS
       Chapter07.Chapter7
       Chapter07.Exercises
       Chapter07.Arith2
-      Chapter07
       Chapter09.Filtering
       Chapter09.FilterChar
-      Chapter10
       Chapter05.EqExercises
       Chapter05.Arith3Broken
       Chapter05.Sing
       Chapter05.TypeInference1
-      Chapter06
-      Chapter08.FFS
-      Chapter09
-      Chapter11
