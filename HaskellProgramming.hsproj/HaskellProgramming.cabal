@@ -7,7 +7,7 @@ stability: experimental
 x-ghc-framework-version: 7.10.3-5.9-2
 x-last-ide-version: HfM1.2.1
 Executable HaskellProgramming
-  main-is: Chapter03.hs
+  main-is: Main.hs
   buildable: True
   build-depends:
       base -any
