@@ -7,17 +7,21 @@ stability: experimental
 x-ghc-framework-version: 7.10.3-5.9-2
 x-last-ide-version: HfM1.2.1
 Executable HaskellProgramming
-  main-is: Chapter3.hs
+  main-is: Chapter03.hs
   buildable: True
   build-depends:
       base -any
   other-modules:
-      Chapter06
-      Chapter07
-      Chapter09
-      Chapter10.NewModule
-      Chapter05.TypeInference1
-      Chapter05.EqExercises
-      Chapter2
       Chapter08
+      Chapter07.Chapter7
+      Chapter07.Exercises
+      Chapter07.Arith2
+      Chapter07
+      Chapter10
       Chapter11
+      Chapter05.EqExercises
+      Chapter05.Arith3Broken
+      Chapter05.Sing
+      Chapter05.TypeInference1
+      Chapter06
+      Chapter09

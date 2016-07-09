@@ -13,6 +13,5 @@ Executable Chapter5
       base -any
   other-modules:
       EqExercises
-      NewModule
       Arith3Broken
       Sing

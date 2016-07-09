@@ -1,4 +1,4 @@
-module Chapter5.EqExercises where
+module Chapter05.EqExercises where
   
   data TisAnInteger = 
     TisAn Integer

@@ -1,4 +1,4 @@
-module Chapter5.TypeInference1 where
+module Chapter05.TypeInference1 where
 
   data Foo = Domestic | Imported deriving Show 
 
