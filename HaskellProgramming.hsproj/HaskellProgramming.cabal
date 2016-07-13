@@ -13,11 +13,13 @@ Executable HaskellProgramming
       base -any
   other-modules:
       Chapter08.FFS
+      Chapter08.ApplyTimes
       Chapter07.Chapter7
       Chapter07.Exercises
       Chapter07.Arith2
       Chapter09.Filtering
       Chapter09.FilterChar
+      Chapter09.Zipping
       Chapter05.EqExercises
       Chapter05.Arith3Broken
       Chapter05.Sing
