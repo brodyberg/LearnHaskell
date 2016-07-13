@@ -15,8 +15,11 @@ module Chapter09.Zipping where
   myZipWith _ _ []  = []
   myZipWith f (a:myAs) (b:myBs) = 
     [f a b] ++ (myZipWith f myAs myBs)
-    
+   -- rewrite zip in terms of zipwith
 
-
-
+  myZip2 :: [a] -> [b] -> [(a,b)]
+  myZip2 [] [] = []
+  myZip2 [] _  = []
+  myZip2 _  [] = []
+  myZip2 (a:myAs) (b:myBs) = [(a, b)] ++ (myZipWith (,) myAs myBs)
 
