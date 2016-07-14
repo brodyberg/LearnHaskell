@@ -11,5 +11,6 @@ module Chapter09.Cipher where
     
   decipher :: Int -> String -> String
   decipher _ [] = ""
-  decipher shift (x:xs) = 
-    [(chr $ ord x - shift)] ++ (decipher shift xs)
+  decipher shift xs = cipher (-shift) xs 
+    
+  
