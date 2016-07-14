@@ -48,3 +48,8 @@ module Chapter09.Capitalize where
   fPointFree :: String -> Int
   fPointFree = 
     length . filter (== 'a')
+    
+
+  -- point free is accomplished by writing a function
+  -- which is not fully applied - it can be any level of
+  -- partially applied, but must not be fully applied. 
