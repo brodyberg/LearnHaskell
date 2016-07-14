@@ -21,3 +21,12 @@ module Chapter09.Capitalize where
   
   capitalizeFirst2 :: (Char -> Char) -> String -> Char
   capitalizeFirst2 f str = f $ head str
+
+  cFirstPointFreeTry :: (Char -> Char) -> String -> Char
+  cFirstPointFreeTry f str = f . head $ str
+
+  cFirstPointFree1 :: (Char -> Char) -> String -> Char
+  cFirstPointFree1 f = f . head
+
+  thing :: Integral a => a -> [a]
+  thing = take 5 . filter odd . enumFrom
