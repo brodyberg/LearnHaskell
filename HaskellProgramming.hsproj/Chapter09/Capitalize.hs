@@ -3,10 +3,14 @@ module Chapter09.Capitalize where
 
   capitalize :: String -> String
   capitalize str =
-    [toUpper (head str)] ++ (tail str)
+    [capitalizeFirst str] ++ (tail str)
   
   capitalize' :: String -> String
   capitalize' [] = []
   capitalize' str =
-    [toUpper (head str)] ++ capitalize' (tail str)
+    [capitalizeFirst str] ++ capitalize' (tail str)
+    
+  capitalizeFirst :: String -> Char
+  capitalizeFirst str = 
+    toUpper (head str)
     
