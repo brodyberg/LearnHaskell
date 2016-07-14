@@ -30,3 +30,21 @@ module Chapter09.Capitalize where
 
   thing :: Integral a => a -> [a]
   thing = take 5 . filter odd . enumFrom
+  
+  fNotPointFree :: String -> Int
+  fNotPointFree str = 
+    length $ filter (== 'a') str
+    
+  -- The reason we can't use . in place of $ above is 
+  -- because filter (== 'a') str is fully applied.
+  -- . requires two function parameters and if we've got
+  -- the right hand parameter being fully applied it's
+  -- not a function. This also shows why $ is not used
+  -- in the pointfree case - because $ requires the
+  -- right hand parameter to be a non-function value
+  -- but pointfree style is about writing unapplied
+  -- functions at term-level
+
+  fPointFree :: String -> Int
+  fPointFree = 
+    length . filter (== 'a')
