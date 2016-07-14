@@ -10,7 +10,6 @@ module Chapter09.Cipher where
     [(chr $ shift + ord x)] ++ (cipher shift xs)
     
   decipher :: Int -> String -> String
-  decipher _ [] = ""
   decipher shift xs = cipher (-shift) xs 
     
   
