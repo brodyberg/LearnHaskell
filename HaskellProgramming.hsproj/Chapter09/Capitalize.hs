@@ -13,4 +13,11 @@ module Chapter09.Capitalize where
   capitalizeFirst :: String -> Char
   capitalizeFirst str = 
     toUpper (head str)
-    
+
+  -- this is composed - we allow the user to pass 
+  -- in the function, thus composing it 
+  capitalizeFirst' :: (Char -> Char) -> String -> Char
+  capitalizeFirst' f str = f $ head str
+  
+  capitalizeFirst2 :: (Char -> Char) -> String -> Char
+  capitalizeFirst2 f str = f $ head str
