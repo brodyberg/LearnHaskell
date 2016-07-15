@@ -24,3 +24,8 @@ module Chapter09.And where
   elem' _ [] = False
   elem' m (x:xs) =
     m == x || elem' m xs
+    
+  reverse' :: [a] -> [a]
+  reverse' [] = []
+  reverse' (x:xs) = 
+    reverse' xs ++ [x]
