@@ -29,3 +29,9 @@ module Chapter09.And where
   reverse' [] = []
   reverse' (x:xs) = 
     reverse' xs ++ [x]
+    
+  -- flatten list of lists into list
+  squish' :: [[a]] -> [a]
+  squish' [] = []
+  squish' (x:xs) =
+    x ++ squish' xs
