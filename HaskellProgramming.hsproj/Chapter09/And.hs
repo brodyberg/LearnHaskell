@@ -35,3 +35,10 @@ module Chapter09.And where
   squish' [] = []
   squish' (x:xs) =
     x ++ squish' xs
+    
+  -- maps a function over a list
+  -- and concatenates the results
+  squishMap :: (a -> b) -> [a] -> [b]
+  squishMap _ [] = []
+  squishMap f (x:xs) =
+    [f x] ++ squishMap f xs
