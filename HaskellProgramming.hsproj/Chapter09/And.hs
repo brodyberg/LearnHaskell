@@ -50,8 +50,44 @@ module Chapter09.And where
   squishAgain (x:xs) =
     squishMap (\x -> [x]) x ++ squishAgain xs
 
+  -- drag a comparator across a list
+  -- put the winner of each comparison
+  -- into a list
+  -- at the end of the overall list
+  -- return the last item in our comparator list
+  -- compare the latest max against next item
+  -- 
+--myMaximumBy takes a comparison function and a list and returns the greatest element of the list based on the last value that the comparison returned GT for.  
 
+--  maximumBy' :: (a -> a -> Ordering) -> [a] -> a
+--  maximumBy' maxTest [] = LT
+----  maximumBy' maxTest x = maxTest 
+--  maximumBy' maxTest (x:xs) = 
+--    maxTest xs
+        
+  maxBy :: (a -> a -> Ordering) -> [a] -> a
+--  maxBy f [] = LT
+  maxBy f xs = 
+--    if (f x) == GT then GT else LT
+  -- where the fuck am I getting this other thing
+  -- and why am I supplying it? rather than 
+  -- the author of (a -> a -> Ordering)?
+    head $ filter (\item -> (f item) == GT)  xs
+----
+----
 
+    -- how do we remember we've ever tested GT?
+    -- if we've tested GT we'd continue searching
+    -- but I can't see how we remember
+  
+    -- and where are we getting left and right?
+--    f x 
+    -- do we need a separate iterator 
+    -- by which we remember things?
+    -- I think we might
+    
+--    x
+    --[f x] ++ maxBy f xs 
 
 
 
