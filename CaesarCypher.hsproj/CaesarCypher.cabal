@@ -11,3 +11,5 @@ Executable CaesarCypher
   buildable: True
   build-depends:
       base -any
+  other-modules:
+      Transmitter
