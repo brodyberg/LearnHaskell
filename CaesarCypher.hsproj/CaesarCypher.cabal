@@ -12,4 +12,8 @@ Executable CaesarCypher
   build-depends:
       base -any
   other-modules:
+      TautologyChecker
+      RecursiveTypes
+      Countdown
       Transmitter
+      AbstractMachine
