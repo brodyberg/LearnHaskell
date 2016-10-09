@@ -12,11 +12,13 @@ Executable CaesarCypher
   build-depends:
       base -any
   other-modules:
+      Transmitter
       Nim
       AbstractMachine
       DerivedPrimitives
       TautologyChecker
       RecursiveTypes
-      Transmitter
+      GameOfLife
       Countdown
       Hangman
+      TicTacToe
