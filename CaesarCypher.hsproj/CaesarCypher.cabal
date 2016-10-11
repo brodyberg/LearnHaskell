@@ -12,6 +12,7 @@ Executable CaesarCypher
   build-depends:
       base -any
   other-modules:
+      Functors
       Transmitter
       Nim
       AbstractMachine
