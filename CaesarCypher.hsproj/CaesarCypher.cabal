@@ -10,16 +10,18 @@ Executable CaesarCypher
   main-is: CaesarCypher.hs
   buildable: True
   build-depends:
-      base -any
+      base -any,
+      lens -any
   other-modules:
       Functors
-      Transmitter
       Nim
-      AbstractMachine
-      DerivedPrimitives
       TautologyChecker
-      RecursiveTypes
       GameOfLife
       Countdown
-      Hangman
       TicTacToe
+      AbstractMachine
+      DerivedPrimitives
+      Transmitter
+      RecursiveTypes
+      Hangman
+      StateMonad

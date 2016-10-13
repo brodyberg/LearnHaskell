@@ -1,4 +1,6 @@
 module Functors where
+
+import Control.Lens
   
 -- items from chapter 12 of Programming in Haskell 2nd Ed by Graham Hutton
 
@@ -54,7 +56,45 @@ inc'' = fmap (+1)
 --  pure = Just
 --  Nothing <*> _ = Nothing
 --  (Just g) <*> mx = fmap g mx
-  
+ 
+prods :: [Int] -> [Int] -> [Int]
+prods xs ys = [ x * y | x <- xs, y <- ys]
+
+prods2 :: [Int] -> [Int] -> [Int]
+prods2 xs ys = pure (*) <*> xs <*> ys
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
