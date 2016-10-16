@@ -18,10 +18,11 @@ Executable CaesarCypher
       TautologyChecker
       GameOfLife
       Countdown
+      Relabel
       TicTacToe
       AbstractMachine
       DerivedPrimitives
       Transmitter
       RecursiveTypes
-      Hangman
       StateMonad
+      Hangman
