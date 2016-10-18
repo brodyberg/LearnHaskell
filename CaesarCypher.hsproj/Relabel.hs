@@ -27,8 +27,8 @@ instance Monad ST where
 data Tree a = Leaf a | Node (Tree a) (Tree a)
   deriving Show
   
-tree :: Tree Char
-tree = Node (Node (Leaf 'a') (Leaf 'b')) (Leaf 'c')
+treeEx :: Tree Char
+treeEx = Node (Node (Leaf 'a') (Leaf 'b')) (Leaf 'c')
 
 rlabel :: Tree a -> Int -> (Tree Int, Int) 
 rlabel (Leaf _)   n = (Leaf n, n+1)
@@ -37,11 +37,66 @@ rlabel (Node l r) n = (Node l' r', n'')
                           (l',n')  = rlabel r n
                           (r',n'') = rlabel r n'
 
+-- thinking from interactive: 
+
+--app (Leaf <$> fresh) 0 -- (Leaf 0,1)
+---- it :: (Tree Int, State)
+---- right, which is the type of the tuple
+---- within ST (Tree Int) because State is 
+---- always an Int, by definition but we 
+---- chose in this case to store Tree Int
+---- within ST a
+--app (Leaf <$> fresh) 1 -- (Leaf 1,2)
+---- it :: (Tree Int, State)
+---- so the key insight to 
+---- Leaf <$> fresh is that it returns a function 
+---- S (State -> (Tree Int, State)) and when 
+---- applied to an Int will go through the <*> 
+---- machinery to increment things
+--
+---- BELOW IS THE WHOLE INTERIOR OF <*> RUN
+---- STEP BY STEP for Leaf <$> fresh
+---- and we note that the computation
+---- of 'a' in ST a and the STATE are held 
+---- separate and recombined into the tuple only 
+---- at the end, ensuring we can carry forward
+---- those two values but also keeping the types
+---- aligned. 
+--
+---- hold on, maybe we can have conflicting types
+---- because they are being held separate within <*>?
+---- f :: a -> Tree a, s' :: State
+--let (f,s') = app (pure Leaf) 0 -- ONLY TREE a
+--  -- the result here, btw are two values: 
+--  -- first, a Leaf constructor and 
+--  -- second, a seed State value of 0 
+--   
+---- x :: Int, s'' :: State
+--let (x,s'') = app fresh s'     -- ONLY State 
+---- yeah, yeah, so when you apply fresh you are 
+---- working with Ints
+---- when you apply Tree a you are working with Tree a
+---- but not overlapped together somehow
+--((f x), s'')                   -- RECOMBINE
+--
+---- app (alabel (Leaf 'f')) 0
+--fst $ app (alabel treeEx) 0
+
+
+
 -- fakeApp :: ST 
 -- so the question is: how/when do we apply the 
 -- value contained in ST Int to ST (Tree Int) via
 -- <*> in Applicative?
 
+
+-- My problem is rooted in fresh: 
+-- signature: ST Int, no parameters
+-- implementation: returns a function on n (Int)
+-- always, so I don't get how we can fresh an 
+-- ST (Tree Int). How does that work?
+-- how do we fresh any arbitrary thing?
+-- how do we transfer values from State to Tree Int?
 
 -- Fresh for any arbitrary state tracking with an Int?
 fresh :: ST Int
