@@ -37,9 +37,30 @@ rlabel (Node l r) n = (Node l' r', n'')
                           (l',n')  = rlabel r n
                           (r',n'') = rlabel r n'
 
+-- fakeApp :: ST 
+-- so the question is: how/when do we apply the 
+-- value contained in ST Int to ST (Tree Int) via
+-- <*> in Applicative?
+
+
 -- Fresh for any arbitrary state tracking with an Int?
 fresh :: ST Int
 fresh = S(\n -> (n,n+1))
+
+-- thoughts: 
+-- ST a has one constructor, S which wraps a function
+-- so when we talk about ST a we're talking about a function
+-- and then we have pure, which puts x into context of ST a
+-- meaning, that we take x and return a function taking a
+-- State (by definition of ST a)
+-- so how can we do this: Leaf <$> fresh
+-- when Leaf is an unapplied function (waiting for Int)
+-- and pure takes a value to be put into the tuple part 
+-- of the function returned by St a? a in the ST a equation
+-- is the type of the first tuple item, so one would assume
+-- putting a function from Int -> Tree Int would not pass
+-- typechecking. So that must not be what's happening right?
+
 
 -- holy shit, I can't read this yet, but this 
 -- code is amazing for the promise that when I get it
