@@ -11,3 +11,6 @@ Executable Typeclassopedia
   buildable: True
   build-depends:
       base -any
+  other-modules:
+      Applicative
+      NewModule

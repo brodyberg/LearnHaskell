@@ -66,18 +66,37 @@ module Chapter09.And where
 --  myMaximumBy f (x:xs) =
 --    f x $ myMaximumBy f xs
 
-  myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
-  myMaximumBy f (x:[]) = x
-  myMaximumBy f (x:y:xs) =
-    if (f x y == GT) then x else y
-
-
-
-
-
-
-
-
-
-
-
+--  myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+--  -- how do we produce a something (a) from nothing ([])?
+----  myMaximumBy _ [] = []
+--  myMaximumBy _ (x:[]) = x
+----  myMaximumBy f (x:y:xs) =
+----    let larger = if (f x y == GT) then x else y in    
+----    larger
+----  myMaximumBy f (x:y:xs) =
+--  myMaximumBy f (x:xs) = 
+--    let largest = filter (\item -> if (f item x == GT) then item else x) xs  
+--
+----    let larger = if (f x y == GT) then x else y in    
+----    larger
+--
+--
+--
+----    myMaximumBy f (larger:xs)
+--
+----
+--  myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+--  myMaximumBy :: f xs =
+--    head $ filter (\i 
+--
+--
+----
+----
+----
+----
+--
+--
+--
+--
+--
+--
