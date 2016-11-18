@@ -1,0 +1,100 @@
+-- from http://www.yesodweb.com/page/quickstart
+-- but seems like.. overkill or incomplete 
+stack new HelloWorld yesod-minimum && cd HelloWorld
+stack build yesod-bin cabal-install --install-ghc
+
+cd c:\
+dir /s /b cabal.exe
+
+add C:\sr\snapshots\a78c6a89\bin to %PATH%
+
+restart cmd
+
+-- from book pg 23
+cabal update && cabal install yesod yesod-bin persistent-sqlite yesod-static
+
+-- make sure we can see ghc 8.0
+
+dir /s /b ghc.exe
+
+-- add to %PATH%
+
+C:\Users\brodyberg\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.1\bin\
+
+cabal update && .. failed with: 
+
+cabal: Error: some packages failed to install:
+authenticate-1.3.3.2 depends on network-2.6.3.1 which failed to install.
+conduit-extra-1.1.15 depends on network-2.6.3.1 which failed to install.
+connection-0.2.6 depends on network-2.6.3.1 which failed to install.
+cryptohash-conduit-0.1.1 depends on network-2.6.3.1 which failed to install.
+hjsmin-0.2.0.2 depends on language-javascript-0.6.0.9 which failed to install.
+http-client-0.5.4 depends on network-2.6.3.1 which failed to install.
+http-client-tls-0.3.3 depends on network-2.6.3.1 which failed to install.
+http-conduit-2.2.3 depends on network-2.6.3.1 which failed to install.
+http-reverse-proxy-0.4.3.2 depends on network-2.6.3.1 which failed to install.
+iproute-1.7.1 depends on network-2.6.3.1 which failed to install.
+language-javascript-0.6.0.9 failed during the configure step. The exception
+was:
+ExitFailure 1
+monad-logger-0.3.20.1 depends on network-2.6.3.1 which failed to install.
+network-2.6.3.1 failed during the configure step. The exception was:
+ExitFailure 1
+old-time-1.1.0.3 failed during the configure step. The exception was:
+ExitFailure 1
+persistent-2.6 depends on network-2.6.3.1 which failed to install.
+persistent-sqlite-2.6 depends on network-2.6.3.1 which failed to install.
+persistent-template-2.5.1.6 depends on network-2.6.3.1 which failed to
+install.
+project-template-0.2.0 depends on network-2.6.3.1 which failed to install.
+simple-sendfile-0.2.25 depends on network-2.6.3.1 which failed to install.
+socks-0.5.5 depends on network-2.6.3.1 which failed to install.
+streaming-commons-0.1.16 depends on network-2.6.3.1 which failed to install.
+tagstream-conduit-0.5.5.3 depends on network-2.6.3.1 which failed to install.
+tls-1.3.8 depends on network-2.6.3.1 which failed to install.
+wai-3.2.1.1 depends on network-2.6.3.1 which failed to install.
+wai-app-static-3.1.6.1 depends on network-2.6.3.1 which failed to install.
+wai-extra-3.0.19 depends on network-2.6.3.1 which failed to install.
+wai-logger-2.3.0 depends on network-2.6.3.1 which failed to install.
+warp-3.2.9 depends on network-2.6.3.1 which failed to install.
+warp-tls-3.2.2 depends on network-2.6.3.1 which failed to install.
+xml-conduit-1.4.0.1 depends on network-2.6.3.1 which failed to install.
+yesod-1.4.3.1 depends on network-2.6.3.1 which failed to install.
+yesod-auth-1.4.13.5 depends on network-2.6.3.1 which failed to install.
+yesod-bin-1.4.18.7 depends on network-2.6.3.1 which failed to install.
+yesod-core-1.4.26 depends on network-2.6.3.1 which failed to install.
+yesod-form-1.4.9 depends on network-2.6.3.1 which failed to install.
+yesod-persistent-1.4.0.6 depends on network-2.6.3.1 which failed to install.
+yesod-static-1.5.1.1 depends on network-2.6.3.1 which failed to install.
+
+which is confusing since these errors are exactly why the 
+author told us to use quickstart...
+
+so I am going to HelloWorld/ and running
+stack build 
+to see what happens
+
+After I ran stack build, i did a dir /s /b for HelloWorld.exe
+I found it in two places: 
+
+C:\Users\brodyberg\Desktop\HelloWorld>dir /s /b HelloWorld.exe
+C:\Users\brodyberg\Desktop\HelloWorld\.stack-work\dist\b7fec021\build\HelloWorld\HelloWorld.exe
+C:\Users\brodyberg\Desktop\HelloWorld\.stack-work\install\35bf466f\bin\HelloWorld.exe
+
+I just picked one and ran it: 
+
+C:\Users\brodyberg\Desktop\HelloWorld>.stack-work\install\35bf466f\bin\HelloWorld.exe
+17/Nov/2016:19:13:39 -0800 [Info#yesod-core] Application launched @(yesod-core-1.4.26-GqaAzjlTJhAob1f5Qrtlh:Yesod.Core.Dispatch .\Yesod\Core\Dispatch.hs:157:11)
+127.0.0.1 - - [17/Nov/2016:19:13:58 -0800] "GET / HTTP/1.1" 200 202 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+127.0.0.1 - - [17/Nov/2016:19:13:58 -0800] "GET /favicon.ico HTTP/1.1" 404 118 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+127.0.0.1 - - [17/Nov/2016:19:14:53 -0800] "GET /add/5/7 HTTP/1.1" 200 88 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+127.0.0.1 - - [17/Nov/2016:19:15:01 -0800] "GET /add/5/7 HTTP/1.1" 200 13 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+
+This completely works
+
+Questions: 
+- Is this retail or debug?
+- Is this how we'd run on a server? (start the exe?)
+- How do I run a simple hs file?
+- Why can't 'runhaskell' find imports?
+- Why are the docs so useless for windows?
