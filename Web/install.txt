@@ -8,7 +8,7 @@ dir /s /b cabal.exe
 
 add C:\sr\snapshots\a78c6a89\bin to %PATH%
 
-restart cmd
+restart cmdk
 
 -- from book pg 23
 cabal update && cabal install yesod yesod-bin persistent-sqlite yesod-static
@@ -98,3 +98,6 @@ Questions:
 - How do I run a simple hs file?
 - Why can't 'runhaskell' find imports?
 - Why are the docs so useless for windows?
+
+
+Turns out 'stack new' requires a connection, which kills bus hacking...
