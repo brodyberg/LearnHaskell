@@ -1,0 +1,29 @@
+1. 
+
+stack new simpleBuild yesod-sqlite && cd simpleBuild
+stack build
+stack exec -- yesod devel 
+
+failed with Error yesod has been compiled with a different version
+please re-install yesod-bin
+
+but it also said: 
+
+Warning: The package list for 'hackage.haskell.org' is 15 days old.
+Run 'cabal update' to get the latest list of available packages.
+
+so I am doing that and retrying... 
+
+same yesod problem... 
+
+2.
+
+stack new fullBuild yesod-sqlite && cd simpleBuild
+stack build yesod-bin cabal-install --install-ghc
+stack exec -- yesod devel 
+
+THIS WORKS AND DEVEL WILL RELOAD WHEN FILES CHANGE TO RECOMPILE
+
+and there's a note in DevelMain.hs talking about how to get "foreign" cabal 
+to work, with a link to here: https://github.com/yesodweb/yesod/wiki/ghci
+ 
