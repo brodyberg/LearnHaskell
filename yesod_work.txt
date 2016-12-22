@@ -26,4 +26,20 @@ THIS WORKS AND DEVEL WILL RELOAD WHEN FILES CHANGE TO RECOMPILE
 
 and there's a note in DevelMain.hs talking about how to get "foreign" cabal 
 to work, with a link to here: https://github.com/yesodweb/yesod/wiki/ghci
- 
+
+3. 
+
+stack new fullBuild2 yesod-sqlite && cd fullBuild2
+stack build
+stack exec -- yesod devel
+fails with yesod version difference
+stack build yesod-bin cabal-install --install-ghc
+stack exec -- yesod devel
+WORKS but builds full app after discovering it's been invoked
+- what is stack build doing for us then? building something else?
+
+ok, so 
+stack clean -- removes build
+stack build -- full build
+stack clean -- removes what we just built
+stack build -- full build
