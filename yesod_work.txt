@@ -63,3 +63,135 @@ Standard out after loading the page:
 C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>stack runghc HelloWorld.hs
 23/Dec/2016:20:36:49 -0500 [Info#yesod-core] Application launched @(yesod_Ff7lgJgHM5KJPC94CGVu3M:Yesod.Core.Dispatch .\Yesod\Core\Dispatch.hs:165:11)
 127.0.0.1 - - [23/Dec/2016:20:37:15 -0500] "GET / HTTP/1.1" 200 83 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
+
+7. "use -ddump-splices with ghc to see the items built by TH for Parseroutes"
+
+How to get that to work with our stack scenario: 
+
+(used 
+where ghc
+ghc --help
+ghc --show-options > foo.txt
+stack --help)
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>stack ghc -- HelloWorld.hs -ddump-splices
+[1 of 1] Compiling Main             ( HelloWorld.hs, HelloWorld.o )
+HelloWorld.hs:(9,22)-(11,2): Splicing expression
+    "\r\n\
+    \/ HomeR GET\r\n"
+  ======>
+    [Yesod.Routes.TH.Types.ResourceLeaf
+       (Yesod.Routes.TH.Types.Resource
+          "HomeR"
+          []
+          (Yesod.Routes.TH.Types.Methods Nothing ["GET"])
+          []
+          True)]
+HelloWorld.hs:(9,1)-(11,2): Splicing declarations
+    mkYesod
+      "HelloWorld"
+      ([Yesod.Routes.TH.Types.ResourceLeaf
+          (Yesod.Routes.TH.Types.Resource
+             "HomeR"
+             []
+             (Yesod.Routes.TH.Types.Methods Nothing ["GET"])
+             []
+             True)])
+  ======>
+    instance ParseRoute HelloWorld where
+      parseRoute
+        = \ f_a6jE x_a6jF -> f_a6jE GHC.Tuple.() x_a6jF ::
+            forall a_a6jG.
+            (()
+             -> ([Data.Text.Internal.Text],
+                 [(Data.Text.Internal.Text, Data.Text.Internal.Text)])
+                -> Maybe (Route a_a6jG))
+            -> ([Data.Text.Internal.Text],
+                [(Data.Text.Internal.Text, Data.Text.Internal.Text)])
+               -> Maybe (Route a_a6jG)
+          helper_a6jD
+        where
+            helper_a6jD env5982_a6jy req5982_a6jz
+              = helper5982_a6jA (fst req5982_a6jz)
+              where
+                  helper5982_a6jA GHC.Types.[]
+                    = \ _ _ x_a6jC _ -> x_a6jC
+                        (error "mdsGetHandler") env5982_a6jy (Just HomeR) req5982_a6jz
+                  helper5982_a6jA _
+                    = \ _ _ x_a6jB _ -> x_a6jB
+                        (error "mds404") env5982_a6jy Nothing req5982_a6jz
+    instance RenderRoute HelloWorld where
+      data Route HelloWorld
+        = HomeR
+        deriving (Show, Eq, Read)
+      renderRoute HomeR = ([], [])
+    instance RouteAttrs HelloWorld where
+      routeAttrs (HomeR {})
+        = containers-0.5.6.2:Data.Set.Base.fromList []
+    resourcesHelloWorld :: [Yesod.Routes.TH.Types.ResourceTree String]
+    resourcesHelloWorld
+      = [Yesod.Routes.TH.Types.ResourceLeaf
+           (Yesod.Routes.TH.Types.Resource
+              "HomeR"
+              []
+              (Yesod.Routes.TH.Types.Methods Nothing ["GET"])
+              []
+              True)]
+    type Handler = HandlerT HelloWorld IO
+    type Widget = WidgetT HelloWorld IO GHC.Tuple.()
+    instance YesodDispatch HelloWorld where
+      yesodDispatch env7716_a6jv req7716_a6jw
+        = helper7716_a6jx (Network.Wai.Internal.pathInfo req7716_a6jw)
+        where
+            helper7716_a6jx GHC.Types.[]
+              = case Network.Wai.Internal.requestMethod req7716_a6jw of {
+                  "GET"
+                    -> yesodRunner getHomeR env7716_a6jv (Just HomeR) req7716_a6jw
+                  _ -> yesodRunner
+                         (Data.Functor.void badMethod)
+                         env7716_a6jv
+                         (Just HomeR)
+                         req7716_a6jw }
+            helper7716_a6jx _
+              = yesodRunner
+                  (Data.Functor.void notFound) env7716_a6jv Nothing req7716_a6jw
+HelloWorld.hs:16:26-49: Splicing expression
+    "Hello, World!"
+  ======>
+    (asWidgetT . toWidget)
+      ((Text.Blaze.Internal.preEscapedText . Data.Text.pack)
+         "Hello, World!")
+Linking HelloWorld.exe ...
+
+8. Try to document HelloWorld.hs with haddock: 
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>where haddock
+C:\Users\brodyberg\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.1\bin\haddock.exe
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>haddock HelloWorld.exe
+target `HelloWorld.exe' is not a module name or a source file
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>haddock HelloWorld.hs
+Haddock coverage:
+
+HelloWorld.hs:5:1: error:
+    Failed to load interface for `Yesod'
+    Use -v to see a list of the files searched for.
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>stack exec -- haddock HelloWorld.hs
+Haddock coverage:
+   0% (  0 /  2) in 'Main'
+  Missing documentation for:
+    Module header
+    main (HelloWorld.hs:18)
+Warning: Main: could not find link destinations for:
+    IO
+
+https://mail.haskell.org/pipermail/haskell-cafe/2010-January/072320.html
+runghc ./Setup.hs haddock --hyperlink-source
+
+NO stack ghc -- HelloWorld.hs haddock --hyperlink-source
+NO stack runghc HelloWorld.hs haddock --hyperlink-source
+NO stack runghc haddock HelloWorld.hs --hyperlink-source
+YES stack exec -- haddock HelloWorld.hs -h
+produces a bunch of assets, starting with index.html which is a html documentation page for Main!
