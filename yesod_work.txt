@@ -43,3 +43,5 @@ stack clean -- removes build
 stack build -- full build
 stack clean -- removes what we just built
 stack build -- full build
+
+4. Let's trim fullbuild2 so it's just a one file hello world thing
