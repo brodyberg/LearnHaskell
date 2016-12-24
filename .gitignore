@@ -1,3 +1,5 @@
+*.exe
+*.aes
 *.swp
 *.hsplay
 dist
