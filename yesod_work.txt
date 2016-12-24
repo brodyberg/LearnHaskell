@@ -44,4 +44,22 @@ stack build -- full build
 stack clean -- removes what we just built
 stack build -- full build
 
-4. Let's trim fullbuild2 so it's just a one file hello world thing
+4. Let's trim ch so it's just a one file hello world thing
+
+5. hold on, does yesod-minimum just NEVER work?
+stack new min yesod-minimal && cd min
+stack build yesod-bin cabal-install --install-ghc
+-- rather than 108 packages it only needs 76
+-- and totally fails on step 3/76 with network situation
+
+6. OMG I got HelloWorld.hs to run to http://localhost:3000
+
+stack new sqlitetest yesod-sqlite && cd sqlitetest
+stack build yesod-bin cabal-install --install-ghc
+copy ..\HelloWorld.hs .
+stack runghc HelloWorld.hs
+Standard out after loading the page: 
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest>stack runghc HelloWorld.hs
+23/Dec/2016:20:36:49 -0500 [Info#yesod-core] Application launched @(yesod_Ff7lgJgHM5KJPC94CGVu3M:Yesod.Core.Dispatch .\Yesod\Core\Dispatch.hs:165:11)
+127.0.0.1 - - [23/Dec/2016:20:37:15 -0500] "GET / HTTP/1.1" 200 83 "" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
