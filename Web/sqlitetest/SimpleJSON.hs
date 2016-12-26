@@ -36,7 +36,7 @@ getObject :: JValue -> Maybe [(String, JValue)]
 getObject (JObject kvps) = Just kvps
 getObject _              = Nothing
 
-getArray :: JValue -> Maybe a
+getArray :: JValue -> Maybe [JValue]
 getArray (JArray ary) = Just ary
 getArray _            = Nothing
 
