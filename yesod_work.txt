@@ -195,3 +195,7 @@ NO stack runghc HelloWorld.hs haddock --hyperlink-source
 NO stack runghc haddock HelloWorld.hs --hyperlink-source
 YES stack exec -- haddock HelloWorld.hs -h
 produces a bunch of assets, starting with index.html which is a html documentation page for Main!
+
+9. Compiling Real World Haskell files one by one: 
+
+sqlitetest>stack ghc -- -c SimpleJSON.hs
