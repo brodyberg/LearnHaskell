@@ -4,10 +4,10 @@ data DNA = A | G | T | C
            deriving (Show, Ord, Eq)
 
 letterToDNA :: Char -> Maybe DNA
-letterToDNA 'a' = Just A
-letterToDNA 'g' = Just G
-letterToDNA 't' = Just T
-letterToDNA 'c' = Just C
+letterToDNA 'A' = Just A
+letterToDNA 'G' = Just G
+letterToDNA 'T' = Just T
+letterToDNA 'C' = Just C
 letterToDNA _   = Nothing
 
 -- lettersToDNA :: String -> [DNA]
@@ -17,11 +17,11 @@ letterToDNA _   = Nothing
 
 lettersToDNA :: String -> [DNA]
 lettersToDNA (x:xs) = case letterToDNA x of
-                        Nothing -> lettersToDNA xs
                         Just A  -> A : lettersToDNA xs
                         Just G  -> G : lettersToDNA xs
                         Just T  -> T : lettersToDNA xs  
                         Just C  -> C : lettersToDNA xs
+                        _       -> lettersToDNA xs
 
 -- let letters = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
 
