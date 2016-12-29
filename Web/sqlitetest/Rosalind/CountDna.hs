@@ -1,4 +1,6 @@
-module CountDna () where
+module CountDna 
+    (lettersToCounts) 
+    where
 
 data DNA = A | G | T | C 
            deriving (Show, Ord, Eq)
