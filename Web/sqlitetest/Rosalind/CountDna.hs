@@ -2,9 +2,6 @@ module CountDna
     (lettersToCounts) 
     where
 
-data DNA = A | G | T | C 
-           deriving (Show, Ord, Eq)
-
 data DNACount = DNACount { a :: Int, c :: Int, g :: Int, t :: Int } 
                 deriving (Show)
 
