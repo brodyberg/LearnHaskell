@@ -205,3 +205,22 @@ sqlitetest>stack ghc -- -c SimpleJSON.hs
 where ghci
 ghci
 :load PutJSON
+
+11. compiling a main and library: 
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest\Rosalind>stack ghc -- -o count Main.hs CountDna.hs
+[1 of 2] Compiling CountDna         ( CountDna.hs, CountDna.o )
+[2 of 2] Compiling Main             ( Main.hs, Main.o )
+Linking count.exe ...
+
+NOTE: If we'd previously built CountDna.o and then subsequently passed it 
+into ghc -c we'd see this: 
+
+C:\Users\brodyberg\Documents\GitHub\LearnHaskell\Web\sqlitetest\Rosalind>stack ghc -- -o count Main.hs CountDna.o
+[1 of 2] Compiling CountDna         ( CountDna.hs, CountDna.o )
+[2 of 2] Compiling Main             ( Main.hs, Main.o )
+Linking count.exe ...
+CountDna.o:fake:(.data+0x0): multiple definition of `__stginit_CountDna'
+.\CountDna.o:fake:(.data+0x0): first defined here
+CountDna.o:fake:(.data+0x0): multiple definition of `CountDna_c_closure'
+.\CountDna.o:fake:(.data+0x0): first defined here
