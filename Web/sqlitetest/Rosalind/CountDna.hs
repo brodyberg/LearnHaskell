@@ -3,40 +3,18 @@ module CountDna () where
 data DNA = A | G | T | C 
            deriving (Show, Ord, Eq)
 
-letterToDNA :: Char -> Maybe DNA
-letterToDNA 'A' = Just A
-letterToDNA 'G' = Just G
-letterToDNA 'T' = Just T
-letterToDNA 'C' = Just C
-letterToDNA _   = Nothing
+data DNACount = DNACount { a :: Int, g :: Int, t :: Int, c :: Int } 
+                deriving (Show)
 
--- lettersToDNA :: String -> [DNA]
--- lettersToDNA (x:xs) = case letterToDNA x of
---                         Nothing -> lettersToDNA xs
---                         _       -> letterToDNA x : lettersToDNA xs
-
-lettersToDNA :: String -> [DNA]
-lettersToDNA (x:xs) = case letterToDNA x of
-                        Just A  -> A : lettersToDNA xs
-                        Just G  -> G : lettersToDNA xs
-                        Just T  -> T : lettersToDNA xs  
-                        Just C  -> C : lettersToDNA xs
-                        _       -> lettersToDNA xs
-
--- let letters = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
-
--- data DNACount = DNACount { a :: Int, g :: Int, t :: Int, c :: Int } deriving (Show)
-
--- let defaultDNACount = DNACount 0 0 0 0
-
--- letters 
--- & map (\l -> toLower l)
--- & foldr (\l acc -> case l of 'a' -> acc { a + 1 })
-
--- x { a = (a x) + 1 }
-
--- defaultDNACount { (a defaultDNACount) + 1 }
--- acc { (g acc) + 1 }
-
--- let lowerCase = map (\l -> toLower l) letters
-
+lettersToCounts :: String -> DNACount
+lettersToCounts ls = 
+    foldr 
+    (\letter acc -> 
+                case letter of 
+                    'A' -> acc { a = (a acc) + 1 }
+                    'G' -> acc { g = (g acc) + 1 }
+                    'T' -> acc { t = (t acc) + 1 }
+                    'C' -> acc { c = (c acc) + 1 }
+                    _   -> acc)
+    DNACount { a = 0, g = 0, t = 0, c = 0 }
+    ls
