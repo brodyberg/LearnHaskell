@@ -199,3 +199,9 @@ produces a bunch of assets, starting with index.html which is a html documentati
 9. Compiling Real World Haskell files one by one: 
 
 sqlitetest>stack ghc -- -c SimpleJSON.hs
+
+10. Ghci and the json work: 
+
+where ghci
+ghci
+:load PutJSON
