@@ -1,0 +1,5 @@
+http://rosalind.info/problems/mprt/
+
+http://www.uniprot.org/uniprot/B5ZC00.fasta
+
+http://www.uniprot.org/uniprot/B5ZC00
