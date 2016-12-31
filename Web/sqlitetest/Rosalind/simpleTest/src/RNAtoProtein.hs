@@ -1,14 +1,13 @@
 module RNAtoProtein (rnaToProtein) where
 
 import Prelude hiding (lookup)
-import qualified Data.Map.Strict as Map
+import Data.Map.Strict (fromList, lookup)
 import Data.List.Split (chunksOf)
 import Data.Maybe
 
 rnaToProtein :: String -> String
-rnaToProtein letters =
-    concat (map fromJust (map (\chunk -> Map.lookup chunk lkup) $ chunksOf 3 letters))
-    where lkup = Map.fromList 
+rnaToProtein = concat . map fromJust . map (\chunk -> lookup chunk lkup) . chunksOf 3
+    where lkup = fromList 
                     [("UUU", "F"),    ("CUU", "L"),  ("AUU", "I"),  ("GUU", "V"),
                      ("UUC", "F"),    ("CUC", "L"),  ("AUC", "I"),  ("GUC", "V"),
                      ("UUA", "L"),    ("CUA", "L"),  ("AUA", "I"),  ("GUA", "V"),
