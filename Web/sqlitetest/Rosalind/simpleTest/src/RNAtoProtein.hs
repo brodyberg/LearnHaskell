@@ -6,7 +6,7 @@ import Data.List.Split (chunksOf)
 import Data.Maybe
 
 rnaToProtein :: String -> String
-rnaToProtein = concat . map fromJust . map (\chunk -> lookup chunk lkup) . chunksOf 3
+rnaToProtein = concat . map fromJust . map rLookup . chunksOf 3
     where lkup = fromList 
                     [("UUU", "F"),    ("CUU", "L"),  ("AUU", "I"),  ("GUU", "V"),
                      ("UUC", "F"),    ("CUC", "L"),  ("AUC", "I"),  ("GUC", "V"),
@@ -24,4 +24,5 @@ rnaToProtein = concat . map fromJust . map (\chunk -> lookup chunk lkup) . chunk
                      ("UGC", "C"),    ("CGC", "R"),  ("AGC", "S"),  ("GGC", "G"),
                      ("UGA", ""),     ("CGA", "R"),  ("AGA", "R"),  ("GGA", "G"),
                      ("UGG", "W"),    ("CGG", "R"),  ("AGG", "R"),  ("GGG", "G")]
+          rLookup chunk = lookup chunk lkup
   
