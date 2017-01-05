@@ -1,22 +1,34 @@
 module Main where
 
--- fastaEx :: String
--- fastaEx = ">Rosalind_1\n\
--- \GATTACA\n\
--- \>Rosalind_2\n\
--- \TAGACCA"
+import Fasta
 
--- type Name = String
--- data DNA = A | G | T | C deriving (Show)
--- -- data RNA = A | G | U | C deriving (Show)
--- data Fasta = Name [DNA]
+-- -- fastaEx :: String
+-- -- fastaEx = ">Rosalind_1\n\
+-- -- \GATTACA\n\
+-- -- \>Rosalind_2\n\
+-- -- \TAGACCA"
+
+-- -- type Name = String
+-- -- data Chain = String
+-- --data DNA = A | G | T | C deriving (Show)
+-- -- -- data RNA = A | G | U | C deriving (Show)
+-- data Fasta = Fasta { name :: String, chain :: String }
+-- --data Fasta = Name Chain
 --    -- | Name [RNA] 
---     deriving (Show)
+--              deriving (Show)
+
+-- emptyFasta :: Fasta
+-- emptyFasta = { name = "", chain = "" }
+
+fastaPath :: String
+fastaPath = "C:\\Users\\brodyberg\\Documents\\GitHub\\LearnHaskell\\Web\\sqlitetest\\Rosalind\\Fasta\\B5ZC00.fasta"
 
 main :: IO ()
 main = do
-  b5z <- readFile "C:\\Users\\brodyberg\\Documents\\GitHub\\LearnHaskell\\Web\\sqlitetest\\Rosalind\\Fasta\\B5ZC00.fasta"
+  b5z <- readFile fastaPath
   let theLines = lines b5z
+
+
 
   print theLines
 
