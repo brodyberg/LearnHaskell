@@ -26,4 +26,4 @@ Into this:
 
 	fromString
 	">Rosalind_1
-	GATTACA" == Fasta("Rosalind1", [G, A, T, T, A, C, A])
+	GATTACA" == Fasta("Rosalind_1", [G, A, T, T, A, C, A])
