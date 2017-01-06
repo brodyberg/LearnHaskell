@@ -1,9 +1,16 @@
 module Fasta 
-    (emptyFasta, Fasta) 
+    (toFasta, Fasta) 
     where
 
 data Fasta = Fasta { name :: String, chain :: String }
              deriving (Show)
 
-emptyFasta :: Fasta
-emptyFasta = Fasta { name = "", chain = "" }
+toFasta :: [String] -> Fasta
+toFasta fileLines =
+    foldr 
+    (\fileLine acc -> 
+        if (head fileLine) == '>'
+        then acc { name = fileLine }
+        else acc { chain = fileLine ++ (chain acc) })
+    Fasta { name = "", chain = "" }
+    fileLines

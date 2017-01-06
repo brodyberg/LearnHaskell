@@ -28,6 +28,11 @@ main = do
   b5z <- readFile fastaPath
   let theLines = lines b5z
 
+  print $ toFasta $ lines b5z
+
+  -- print $ toFasta theLines
+
+  -- toFasta 
 
 
   print theLines
