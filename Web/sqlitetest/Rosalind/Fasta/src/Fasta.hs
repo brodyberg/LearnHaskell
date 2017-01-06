@@ -1,5 +1,5 @@
 module Fasta 
-    (toFasta, Fasta) 
+    (toFasta, Fasta, name, chain) 
     where
 
 data Fasta = Fasta { name :: String, chain :: String }
@@ -10,7 +10,7 @@ toFasta fileLines =
     foldr 
     (\fileLine acc -> 
         if (head fileLine) == '>'
-        then acc { name = fileLine }
+        then acc { name = (tail fileLine) }
         else acc { chain = fileLine ++ (chain acc) })
     Fasta { name = "", chain = "" }
     fileLines
